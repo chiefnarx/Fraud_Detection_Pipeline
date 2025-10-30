@@ -186,13 +186,6 @@ Actual Legit  56,196   668  (56,864 legitimate)
 - Transactions with similar fraud patterns to training data
 - PCA-transformed V1-V28 features (specific to this dataset)
 
-⚠️ **For production fraud detection:**
-- Train on YOUR company's actual transaction data
-- Include real features (merchant, location, device, card type, etc.)
-- Retrain regularly (fraud patterns evolve monthly)
-- Monitor model performance continuously
-- Implement human-in-the-loop for high-risk transactions
-
 ### Data Privacy
 - Dataset is anonymized (V1-V28 are PCA components)
 - Original features (card numbers, names, etc.) removed for privacy
