@@ -30,7 +30,7 @@ jobs:
       # Step 4: Run tests
       - name: Run tests
         run: |
-          pytest scripts/dags/test_dag.py/ 
+          pytest scripts/dags/test_dag.py
 
       # Step 5: Validate Airflow DAGs
       - name: Validate DAGs
