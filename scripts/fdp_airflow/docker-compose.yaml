@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  airflow:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: apache/airflow:2.8.1
+    restart: always
+    environment:
+      - AIRFLOW__CORE__EXECUTOR=SequentialExecutor
+      - AIRFLOW__CORE__FERNET_KEY=4X8YTt0obLA32ZC3OAaYhzn1JZFI_tLrnoBJ_9IinFQ=
+      - AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION=True
+      - AIRFLOW__CORE__LOAD_EXAMPLES=False
+      - AIRFLOW__WEBSERVER__WORKERS=1
+    volumes:
+      - ./airflow_data:/opt/airflow                 # Persistent DB and config
+      - ./dags:/opt/airflow/dags                    # DAG scripts
+      - ./logs:/opt/airflow/logs                    # Task logs
+      - ./plugins:/opt/airflow/plugins              # Optional plugins
+      - ./requirements.txt:/requirements.txt        # Python dependencies
+      - C:/Users/luk/Fraud_Detection/scripts:/opt/airflow/scripts  # ML pipeline code
+    ports:
+      - "8080:8080"
+    command: webserver

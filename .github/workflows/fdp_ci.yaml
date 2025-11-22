@@ -1,0 +1,45 @@
+name: FDP Pipeline
+
+on:
+  push:        # runs whenever you push code
+    branches:
+      - main   # only on main branch
+  pull_request: # also runs on PRs
+
+jobs:
+  build-test-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout your repo
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Python
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11.9'
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      # Step 4: Run tests
+      - name: Run tests
+        run: |
+          pytest tests/   # assumes you have a tests/ folder
+
+      # Step 5: Validate Airflow DAGs
+      - name: Validate DAGs
+        run: |
+          python -c "from airflow.models import DagBag; DagBag().dagbag_stats"
+
+      # Step 6: Deploy DAGs to S3
+      - name: Deploy DAGs to S3
+        run: |
+          aws s3 cp ./dags s3://fraud-detection-data-ameer/dags/ --recursive
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
