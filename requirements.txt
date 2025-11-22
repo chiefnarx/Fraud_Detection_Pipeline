@@ -4,5 +4,5 @@ imbalanced-learn
 joblib
 matplotlib
 numpy
-apache-airflow
+apache-airflow==2.9.0
 pytest
