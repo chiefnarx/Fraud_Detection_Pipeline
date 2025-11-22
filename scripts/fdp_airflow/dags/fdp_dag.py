@@ -20,7 +20,7 @@ default_args = {
 with DAG(
     dag_id='fraud_detection_pipeline',
     default_args=default_args,
-    schedule_interval='@daily',
+    schedule='@daily',
     catchup=False,
     description='End-to-end fraud detection pipeline for batch scoring',
 ) as dag:
