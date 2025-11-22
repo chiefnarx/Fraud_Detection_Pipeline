@@ -25,11 +25,12 @@ jobs:
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
+          pip install pytest
 
       # Step 4: Run tests
       - name: Run tests
         run: |
-          pytest tests/   # assumes you have a tests/ folder
+          pytest tests/ 
 
       # Step 5: Validate Airflow DAGs
       - name: Validate DAGs

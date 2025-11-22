@@ -4,3 +4,4 @@ imbalanced-learn
 joblib
 matplotlib
 numpy
+pytest
