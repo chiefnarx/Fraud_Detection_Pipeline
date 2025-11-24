@@ -1,10 +1,10 @@
 name: FDP Pipeline
 
 on:
-  push:        # runs whenever you push code
+  push:
     branches:
-      - main   # only on main branch
-  pull_request: # also runs on PRs
+      - main
+  pull_request:
 
 jobs:
   build-test-deploy:
@@ -26,6 +26,10 @@ jobs:
         run: |
           pip install -r requirements.txt
           pip install pytest
+
+      # 👉 Step 3.5: Make pipeline importable
+      - name: Set PYTHONPATH
+        run: echo "PYTHONPATH=$PWD" >> $GITHUB_ENV
 
       # Step 4: Run tests
       - name: Run tests
