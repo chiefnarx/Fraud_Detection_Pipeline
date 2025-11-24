@@ -27,9 +27,13 @@ jobs:
           pip install -r requirements.txt
           pip install pytest
 
-      # 👉 Step 3.5: Make pipeline importable
+      # Step 3.5: Make scripts.pipeline importable
       - name: Set PYTHONPATH
         run: echo "PYTHONPATH=$PWD/scripts" >> $GITHUB_ENV
+
+      # Step 3.6: Disable Airflow example DAGs
+      - name: Disable Airflow example DAGs
+        run: echo "AIRFLOW__CORE__LOAD_EXAMPLES=False" >> $GITHUB_ENV
 
       # Step 4: Run tests
       - name: Run tests
