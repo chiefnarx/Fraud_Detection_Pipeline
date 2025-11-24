@@ -5,10 +5,10 @@ import sys
 
 sys.path.append('/opt/airflow/scripts')
 
-from pipeline.data_extraction import run_extraction
-from pipeline.feature_engineering import run_engineering
-from pipeline.model_training import run_training
-from pipeline.batch_prediction import run_prediction
+from scripts.pipeline.data_extraction import run_extraction
+from scripts.pipeline.feature_engineering import run_engineering
+from scripts.pipeline.model_training import run_training
+from scripts.pipeline.batch_prediction import run_prediction
 
 default_args = {
     'owner': 'airflow',
