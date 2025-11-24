@@ -27,7 +27,7 @@ jobs:
           pip install -r requirements.txt
           pip install pytest
 
-      # Step 3.5: Make scripts.pipeline importable
+      # Step 3.5: Make pipeline importable
       - name: Set PYTHONPATH
         run: echo "PYTHONPATH=$PWD/scripts" >> $GITHUB_ENV
 
